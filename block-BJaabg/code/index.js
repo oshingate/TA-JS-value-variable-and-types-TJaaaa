@@ -19,15 +19,19 @@ const ACCESSORY_PRICE = 9.99;
 
 var bank_balance = 303.91;
 var amount = 0;
+let total = 0;
 
-let phones = 0;
-
-while (amount + PHONE_PRICE < bank_balance) {
-  phones += 1;
+while (amount < bank_balance) {
   amount += PHONE_PRICE;
+  if (amount < SPENDING_THRESHOLD) {
+    amount += ACCESSORY_PRICE;
+  }
+  total = amount + amount * TAX_RATE;
 }
 
-amount += phones * ACCESSORY_PRICE;
-
-alert(`$334.76`);
-alert(`not affordable`);
+console.log(`$${total}`);
+if (total < bank_balance) {
+  console.log("you can afford it");
+} else {
+  console.log("you cant afford it");
+}
